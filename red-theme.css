@@ -1,0 +1,4 @@
+:root{--canvas:#f7e9e8;--panel:#fffafa;--line:#ead1d0;--muted:#7c5d61;--ink:#34191e;--teal:#9d1536;--teal-soft:#f9e0e3;--red:#b51f39;--red-soft:#fbe1e2;--gold:#c39b4d}
+body{background:radial-gradient(circle at top right,#f4d1d4 0%,#f8eeee 38%,#efd9d9 100%)}
+.sidebar{background:linear-gradient(180deg,#a7193c 0%,#780e2a 55%,#5e0a20 100%)}
+.brand{border-bottom-color:#f3d48a88}.nav-link:hover,.nav-link.active{background:#4d071d66}.primary{background:linear-gradient(135deg,#b51c40,#86102d)}.primary:hover{background:#780b27}.panel{background:#fffafa;border-color:#ebd2d1}.metric{background:#fffafa;border-left-color:#a7193c}.metric.income{border-left-color:#9e1535}.metric.expense{border-left-color:#c04447}.property-card{background:#fff8f8;border-top-color:#a7193c}.filters{background:#fff4f4;border-color:#ecd8d7}.secondary{background:#fff8f6;border-color:#dca7a1;color:#851735}.secondary:hover{background:#fcecec}.eyebrow{color:#a7193c}.report-summary{background:#fffafa}

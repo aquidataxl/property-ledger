@@ -1,0 +1,3 @@
+/* One consistent typeface across the entire application. */
+html,body,button,input,select,textarea,h1,h2,h3,h4,p,small,strong,span,th,td,label{font-family:"Segoe UI",Arial,sans-serif}
+.property-card h3,.card-number,.report-title h2,.report-summary strong{font-family:"Segoe UI",Arial,sans-serif}

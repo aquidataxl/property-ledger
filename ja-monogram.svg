@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+  <title id="title">Jane and Arash monogram</title>
+  <desc id="desc">Minimal line-art JA monogram for Jane and Arash</desc>
+  <rect width="160" height="160" rx="28" fill="none"/>
+  <path d="M35 35h43M61 35v57c0 20-10 32-29 32-10 0-19-4-25-11" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m77 124 28-88h12l28 88M91 88h39" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="133" cy="35" r="4" fill="#C8102E"/>
+</svg>
