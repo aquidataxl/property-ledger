@@ -1,0 +1,30 @@
+/* Phone-first layout: compact top navigation and full-width content. */
+html{width:100%;max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{width:100%;max-width:100%;overflow-x:hidden}
+*,*::before,*::after{min-width:0}
+@media (max-width: 760px) {
+  body{display:block;min-width:0}
+  .sidebar{width:100%;padding:12px 14px 0;display:block;border-right:0;border-bottom:4px solid #c8102e}
+  .brand{padding:0 0 12px;border:0;min-width:0}.brand-mark{display:block;width:36px;height:36px;min-width:36px;flex:0 0 36px;object-fit:contain}.brand div{display:block;font-size:inherit;min-width:0}.brand strong{font-size:15px}.brand small{font-size:11px}
+  .sidebar nav{display:flex;gap:4px;overflow-x:auto;overflow-y:hidden;padding:0 0 10px;scrollbar-width:none}.sidebar nav::-webkit-scrollbar{display:none}
+  .nav-link{font-size:13px;white-space:nowrap;height:auto;padding:9px 10px;border-left:0;border-bottom:3px solid transparent;border-radius:3px}.nav-link:hover,.nav-link.active{border-left:0;border-bottom-color:#fff}
+  .sidebar-footer{display:none}
+  main{width:100%;max-width:none;margin:0;padding:clamp(14px,4vw,18px) clamp(12px,4vw,16px) 30px}
+  header{display:block;margin-bottom:18px}h1{font-size:clamp(22px,7vw,27px);line-height:1.15}.eyebrow{font-size:10px}
+  .header-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}.header-actions select{grid-column:1/-1;width:100%;min-width:0;padding:10px}.header-actions button{width:100%;padding:10px 7px;font-size:13px}
+  .metrics{grid-template-columns:1fr;gap:10px;margin-bottom:16px}.metric{padding:14px}.metric span{font-size:13px}.metric strong{font-size:clamp(20px,6.5vw,25px);overflow-wrap:anywhere}.metric small{font-size:11px}
+  .panel{padding:clamp(13px,4vw,17px);margin-bottom:15px}.panel-heading{display:block;margin-bottom:15px}.panel-heading h2{font-size:clamp(16px,5vw,19px)}.panel-heading p{font-size:13px}.panel-heading .primary,.panel-heading .secondary{margin-top:12px;width:100%}
+  .property-grid{grid-template-columns:1fr}.property-card{padding:14px}.property-card h3{font-size:15px;overflow-wrap:anywhere}.property-card p{min-height:0;overflow-wrap:anywhere}.card-number{font-size:20px;overflow-wrap:anywhere}
+  .transaction-row{gap:9px}.transaction-date{width:64px;font-size:11px}.transaction-main{font-size:13px}.transaction-main small{font-size:11px}.transaction-row .amount{font-size:13px}
+  .filters{display:grid;grid-template-columns:1fr;gap:9px;padding:10px}.filters label{min-width:0}.filters input{width:100%;min-width:0;min-height:40px}.filters button{grid-column:auto;width:100%}
+  .table-wrap{margin:0 -16px;padding:0 16px}.table-wrap table{min-width:640px}
+  .report-summary,#mikeReportArea .report-summary{grid-template-columns:1fr;margin:16px 0}.report-summary div{border-right:0;border-bottom:1px solid var(--line);padding:13px}.report-summary div:last-child{border-bottom:0}
+  dialog{width:calc(100vw - 20px);max-height:calc(100dvh - 20px);overflow:auto}.form-grid{grid-template-columns:1fr;gap:12px}dialog form,.cloud-dialog{padding:18px}dialog label{font-size:13px}dialog input,dialog select,dialog textarea{font-size:16px;min-height:42px}.form-actions{flex-direction:column-reverse}.form-actions button{width:100%;min-height:42px}
+}
+
+/* Narrow Android portrait screens. */
+@media (max-width: 420px) and (orientation: portrait) {
+  .sidebar{padding:10px 12px 0}
+  .brand{gap:9px;padding-bottom:10px}.brand-mark{width:32px;height:32px;min-width:32px;flex-basis:32px}.brand strong{font-size:14px}.brand small{font-size:10px}
+  .sidebar nav{padding-bottom:8px}.nav-link{font-size:12px;padding:8px 9px}
+}
