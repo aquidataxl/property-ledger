@@ -1,0 +1,12 @@
+{
+  "name": "Property Ledger",
+  "short_name": "Property Ledger",
+  "description": "Personal property income, expense, and forecast bookkeeping.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#edf2fa",
+  "theme_color": "#10264f",
+  "icons": [
+    { "src": "ja-monogram.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

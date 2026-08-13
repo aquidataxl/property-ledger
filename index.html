@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="red-theme.css" />
   <link rel="stylesheet" href="union-jack.css" />
   <link rel="stylesheet" href="typography.css" />
-  <link rel="stylesheet" href="cloud.css" />
+  <link rel="stylesheet" href="mike.css" />
 </head>
 <body>
   <aside class="sidebar">
@@ -22,13 +22,14 @@
       <button class="nav-link" data-view="transactions">Transactions</button>
       <button class="nav-link" data-view="reports">Reports</button>
       <button class="nav-link" data-view="forecast">Forecast</button>
+      <button class="nav-link" data-view="mike">Mike account</button>
     </nav>
     <div class="sidebar-footer"><button id="exportData" class="quiet-button">Export backup</button><label class="quiet-button file-label">Import backup<input id="importData" type="file" accept="application/json" /></label></div>
   </aside>
   <main>
     <header>
       <div><p class="eyebrow" id="pageKicker">YOUR PORTFOLIO</p><h1 id="pageTitle">Overview</h1></div>
-      <div class="header-actions"><select id="propertyFilter" aria-label="Select property"></select><button id="oneDriveSync" class="secondary">OneDrive sync</button><button id="addTransaction" class="primary">+ Add transaction</button></div>
+      <div class="header-actions"><select id="propertyFilter" aria-label="Select property"></select><button id="emailBackup" class="secondary">Email backup</button><button id="addTransaction" class="primary">+ Add transaction</button></div>
     </header>
     <section id="dashboard" class="view active">
       <div class="metrics">
@@ -47,18 +48,28 @@
     </section>
     <section id="reports" class="view">
       <section class="panel"><div class="panel-heading"><div><h2>Property profit &amp; loss</h2><p>Choose a property and date range, then print or save as PDF.</p></div><button id="printReport" class="secondary">Print / Save PDF</button></div><div class="filters report-filters"><label>From <input id="reportFrom" type="date" /></label><label>To <input id="reportTo" type="date" /></label><button id="runReport" class="primary">Run report</button></div><div id="reportArea"></div></section>
+      <section class="panel"><div class="panel-heading"><div><h2>Mike account report</h2><p>Rent received, building charges paid, and money transferred to you during the same period.</p></div></div><div id="mikeReportArea"></div></section>
     </section>
     <section id="forecast" class="view">
       <section class="panel"><div class="panel-heading"><div><h2>Rental income forecast</h2><p>Plan expected rent for each property. Forecasts do not change your actual income totals.</p></div><button id="addForecast" class="primary">+ Add forecast</button></div><div class="filters"><label>From <input id="forecastFrom" type="date" /></label><label>To <input id="forecastTo" type="date" /></label><button id="clearForecastDates" class="secondary">Clear dates</button></div><div class="table-wrap"><table><thead><tr><th>Expected date</th><th>Property</th><th>Description</th><th class="amount">Expected income</th><th></th></tr></thead><tbody id="forecastTable"></tbody></table></div></section>
+    </section>
+    <section id="mike" class="view">
+      <div class="metrics">
+        <article class="metric income"><span>Rent received by Mike</span><strong id="mikeReceived">£0.00</strong><small>Money into his account</small></article>
+        <article class="metric expense"><span>Building charges paid</span><strong id="mikeCharges">£0.00</strong><small>Paid from funds held</small></article>
+        <article class="metric profit"><span>Mike account balance</span><strong id="mikeBalance">£0.00</strong><small>Available after payments to you</small></article>
+      </div>
+      <section class="panel"><div class="panel-heading"><div><h2>Mike account activity</h2><p>Record rent received by Mike, building charges he pays, and transfers he sends to you.</p></div><button id="addMikeEntry" class="primary">+ Add entry</button></div><div class="filters"><label>From <input id="mikeFrom" type="date" /></label><label>To <input id="mikeTo" type="date" /></label><button id="clearMikeDates" class="secondary">Clear dates</button></div><div class="table-wrap"><table><thead><tr><th>Date</th><th>Property</th><th>Description</th><th>Activity</th><th class="amount">Amount</th><th></th></tr></thead><tbody id="mikeTable"></tbody></table></div></section>
     </section>
   </main>
   <dialog id="propertyDialog"><form method="dialog" id="propertyForm"><div class="modal-heading"><h2>Add property</h2><button type="button" class="close">×</button></div><label>Property name<input name="name" required placeholder="e.g. 14 Park Road" /></label><label>Address<textarea name="address" rows="3" placeholder="Optional"></textarea></label><label>Currency<select name="currency"><option value="GBP">GBP — British pound (£)</option><option value="AED">AED — UAE dirham (AED)</option></select></label><div class="form-actions"><button value="cancel" class="secondary">Cancel</button><button value="default" class="primary">Save property</button></div></form></dialog>
   <dialog id="transactionDialog"><form method="dialog" id="transactionForm"><div class="modal-heading"><h2>Add transaction</h2><button type="button" class="close">×</button></div><div class="form-grid"><label>Property<select name="propertyId" required></select></label><label>Date<input name="date" type="date" required /></label><label>Type<select name="type"><option value="income">Income</option><option value="expense">Expense</option></select></label><label>Category<select name="category"></select></label></div><label>Description<input name="description" required placeholder="e.g. August rent" /></label><label>Amount<input name="amount" type="number" min="0.01" step="0.01" required /></label><label>Notes<textarea name="notes" rows="2" placeholder="Optional"></textarea></label><div class="form-actions"><button value="cancel" class="secondary">Cancel</button><button value="default" class="primary">Save transaction</button></div></form></dialog>
   <dialog id="forecastDialog"><form method="dialog" id="forecastForm"><div class="modal-heading"><h2>Add rental forecast</h2><button type="button" class="close">×</button></div><label>Property<select name="propertyId" required></select></label><label>Expected rental date<input name="date" type="date" required /></label><label>Description<input name="description" required placeholder="e.g. September rent" /></label><label>Expected amount<input name="amount" type="number" min="0.01" step="0.01" required /></label><div class="form-actions"><button value="cancel" class="secondary">Cancel</button><button value="default" class="primary">Save forecast</button></div></form></dialog>
-  <dialog id="cloudDialog"><div class="cloud-dialog"><div class="modal-heading"><h2>OneDrive sync</h2><button type="button" class="close">×</button></div><p id="cloudStatus">Connect your Microsoft account to keep this app updated across devices.</p><label>Microsoft Application (client) ID<input id="cloudClientId" placeholder="Paste your Application ID" autocomplete="off" /></label><small class="cloud-help">This is not a password. It identifies your private Property Ledger connection to Microsoft.</small><div class="form-actions"><button id="cloudDisconnect" class="secondary" type="button">Disconnect</button><button id="cloudConnect" class="primary" type="button">Connect OneDrive</button></div><div id="cloudActions" class="cloud-actions"><button id="cloudDownload" class="secondary" type="button">Download latest</button><button id="cloudUpload" class="secondary" type="button">Upload now</button></div></div></dialog>
+  <dialog id="mikeDialog"><form method="dialog" id="mikeForm"><div class="modal-heading"><h2>Add Mike account entry</h2><button type="button" class="close">×</button></div><div class="form-grid"><label>Property<select name="propertyId" required></select></label><label>Date<input name="date" type="date" required /></label><label>Activity<select name="type"><option value="received">Rent received by Mike</option><option value="charge">Building charge paid by Mike</option><option value="transfer">Transferred to you</option></select></label><label>Amount<input name="amount" type="number" min="0.01" step="0.01" required /></label></div><label>Description<input name="description" required placeholder="e.g. September rent received" /></label><div class="form-actions"><button value="cancel" class="secondary">Cancel</button><button value="default" class="primary">Save entry</button></div></form></dialog>
   <script src="app.js"></script>
   <script src="forecast.js"></script>
-  <script src="cloud.js"></script>
+  <script src="mike.js"></script>
+  <script src="email-backup.js"></script>
   <script>if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');</script>
 </body>
 </html>

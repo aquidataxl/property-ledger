@@ -1,0 +1,2 @@
+#mikeReportArea .report-summary{grid-template-columns:repeat(4,1fr)}
+@media(max-width:760px){#mikeReportArea .report-summary{grid-template-columns:1fr}}
