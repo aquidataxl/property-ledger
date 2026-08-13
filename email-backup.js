@@ -2,9 +2,9 @@
 (() => {
   const recipient='arasharef@gmail.com';
   document.querySelector('#emailBackup').addEventListener('click',()=>{
-    const date=new Date().toISOString().slice(0,10);
-    const backup={version:3,exportedAt:new Date().toISOString(),data,forecasts,mikeEntries};
-    const fileName=`property-ledger-backup-${date}.json`;
+    const exportedAt=new Date(),date=`${exportedAt.getFullYear()}-${String(exportedAt.getMonth()+1).padStart(2,'0')}-${String(exportedAt.getDate()).padStart(2,'0')}`,stamp=typeof backupStamp==='function'?backupStamp(exportedAt):date;
+    const backup={version:3,exportedAt:exportedAt.toISOString(),data,forecasts,mikeEntries};
+    const fileName=`property-ledger-backup-${stamp}.json`;
     const link=document.createElement('a');
     link.href=URL.createObjectURL(new Blob([JSON.stringify(backup,null,2)],{type:'application/json'}));
     link.download=fileName;
